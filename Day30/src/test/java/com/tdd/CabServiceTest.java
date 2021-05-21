@@ -11,19 +11,19 @@ public class CabServiceTest {
 	public void setUp() throws Exception {
 		cabservice = new CabService();
 	}
-	@Test
-	public void givenDistanceAndTimeShouldReturnTotalFare() {
-		final double distance = 2.0;
-		final int minute = 5;
-		double totalFare = cabservice.calculateFare(distance, minute);
-		Assert.assertEquals(25, totalFare, 0);
-	}
+//	@Test
+//	public void givenDistanceAndTimeShouldReturnTotalFare() {
+//		final double distance = 2.0;
+//		final int minute = 5;
+//		double totalFare = cabservice.calculateFare(distance, minute);
+//		Assert.assertEquals(25, totalFare, 0);
+//	}
 	@Test
 	public void givenLessDistanceAndTimeShouldReturnMinFare() {
 		final double distance = 0.1;
 		final int minute = 1;
-		double totalFare = cabservice.calculateFare(distance, minute);
-		Assert.assertEquals(5, totalFare, 0);
+		double totalFare = cabservice.calculateFare("Premuim",distance, minute);
+		Assert.assertEquals(20, totalFare, 0);
 	}
 	@Test
 	public void givenMultipleRidesShouldReturnTotalFare() {
@@ -41,5 +41,12 @@ public class CabServiceTest {
 		InVoiceSummary summary = cabservice.calculateFare(rides);
 		InVoiceSummary expectedInvoiceSummary = new InVoiceSummary(2, 30.0);
 		Assert.assertEquals(expectedInvoiceSummary, summary);
+	}
+	@Test
+	public void givenDistanceAndTimeForNormalRideShouldReturnTotalFare() {
+		final double distance = 2.0;
+		final int minute = 5;
+		double totalFare = cabservice.calculateFare("Normal",distance, minute);
+		Assert.assertEquals(25, totalFare, 0);
 	}
 }
